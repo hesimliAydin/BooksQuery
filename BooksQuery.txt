@@ -1,0 +1,45 @@
+SELECT *
+FROM Books
+--1. En bahali 10 kitabin , Name,Price gosterin
+SELECT TOP 10 [Name],[Price]
+FROM Books
+ORDER BY Price DESC
+
+
+--2. Qish ayinda derc olunmush kitablari gosterin
+SELECT [Name]
+FROM Books
+WHERE MONTH([Date])<12 AND MONTH([Date])>3
+
+
+--3  Diasoft derc evinin en bahali kitabini gosterin
+SELECT TOP 1 [Name]
+FROM Books
+WHERE [Publisher]='DiaSoft'
+ORDER BY [Price] DESC
+
+--4  Topic ve topicin umumi ne qeder qazamc elde olundugunu gosterin
+SELECT DISTINCT [Topic] ,SUM([Price]) AS TopicResultPrice
+FROM Books
+GROUP BY [Topic]
+
+--5  Adi A herfi ile bashlayan kitablari qiymete gore siralayin ve en baha ilk 5 kitab gosterin
+
+SELECT TOP 5 [Name]
+FROM  Books
+WHERE [Name] LIKE 'A%'
+ORDER BY [Price] DESC
+
+--6 Umumi Kitab deyeri 500 dollari kechen derc evlerini ve onlarin satish deyerini gosterin
+
+SELECT [Publisher]
+FROM Books
+GROUP BY Publisher
+HAVING SUM([Price])>500
+
+
+
+
+
+
+
